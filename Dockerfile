@@ -23,3 +23,4 @@ RUN echo 'mysql-server mysql-server/root_password password changeme' | debconf-s
   apt-get install -y mysql-server mysql-client libmysqlclient-dev
 RUN service mysql start; echo "CREATE DATABASE mellivora CHARACTER SET utf8 COLLATE utf8_general_ci;" | mysql -uroot -pchangeme; mysql mellivora -uroot -pchangeme < /var/www/mellivora/install/mellivora.sql; mysql mellivora -uroot -pchangeme < /var/www/mellivora/install/countries.sql; echo "GRANT ALL PRIVILEGES ON mellivora.* To 'root'@'%' IDENTIFIED BY '';" | mysql -uroot -pchangeme
 RUN service mysql start; echo "GRANT ALL PRIVILEGES ON mellivora.* To 'root'@'%' IDENTIFIED BY '';" | mysql -uroot -pchangeme
+RUN systemctl enable mysql
